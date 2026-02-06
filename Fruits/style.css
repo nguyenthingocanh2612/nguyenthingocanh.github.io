@@ -1,0 +1,14 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+.fruits {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.fruits img {
+    width: 100px;
+}
