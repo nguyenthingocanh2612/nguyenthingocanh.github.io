@@ -1,0 +1,132 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    font-size: 13px;
+}
+
+.wrapper {
+    width: 950px;
+    margin: 0 auto;
+    background: white;
+    border: 1px solid #ddd;
+}
+
+/* Header & Banner */
+header {
+    height: 200px;
+    background-image: url('banner.jpg'); /* Nếu bạn có ảnh nền banner */
+    background-color: #555; /* Màu tạm thời */
+    position: relative;
+    border-bottom: 5px solid #888;
+}
+
+.logo-box {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: #c02a2a;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-style: italic;
+}
+
+/* Menu */
+nav {
+    background: #e0e0e0;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li a {
+    display: block;
+    padding: 10px 15px;
+    text-decoration: none;
+    color: #c02a2a;
+    font-weight: bold;
+}
+
+nav ul li a.active {
+    background: #ccc;
+}
+
+.welcome {
+    text-align: center;
+    padding: 10px;
+    color: #2e5a2e;
+    font-weight: bold;
+    border-bottom: 1px dashed #ccc;
+}
+
+/* Layout chia cột */
+.container {
+    display: flex;
+    padding: 20px;
+    gap: 15px;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+}
+
+.column-large { flex: 2; }
+.column-small { flex: 1; }
+
+.title {
+    font-size: 15px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+}
+
+.red { color: #c02a2a; }
+.blue { color: #2a5ac0; }
+.green { color: #2a8a2a; }
+
+/* Items */
+.product-item {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+    border: 1px solid #f0f0f0;
+    padding: 10px;
+}
+
+.product-item img { width: 120px; height: 100px; object-fit: cover; }
+
+.promo-item { text-align: center; }
+.promo-item img { width: 80px; margin: 10px 0; border: 1px solid #ddd; }
+
+.catalog-list {
+    list-style: none;
+    line-height: 2;
+}
+
+.catalog-list li::before {
+    content: "» ";
+    color: orange;
+}
+
+/* Footer */
+footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    border-top: 1px solid #eee;
+    color: #888;
+}
+
+.footer-logo {
+    font-style: italic;
+    font-family: 'Times New Roman', serif;
+}
