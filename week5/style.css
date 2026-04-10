@@ -41,11 +41,11 @@ p {
   width: 640px;
 }
 
-.red-text {
+p.red-text {
   color: red;
 }
 
-#third {
+p#third {
   background-color: black;
   color: white;
   font-family: "Times New Roman", serif;
