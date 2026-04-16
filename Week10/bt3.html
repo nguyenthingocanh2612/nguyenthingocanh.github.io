@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Tính số ngày trong tháng</title>
+    <script>
+        function isLeapYear(y) {
+            return (y % 4 == 0 && y % 100 != 0) || (y % 400 == 0);
+        }
+
+        function update() {
+            var y = document.f.year.value;
+            var m = document.f.month.value;
+            var res = document.f.date;
+
+            if (y == "" || isNaN(y)) {
+                res.value = "Năm phải là số";
+                document.f.year.focus();
+            } else {
+                var yearNum = parseInt(y);
+                switch (m) {
+                    case "1": case "3": case "5": case "7": case "8": case "10": case "12":
+                        res.value = "31";
+                        break;
+                    case "4": case "6": case "9": case "11":
+                        res.value = "30";
+                        break;
+                    case "2":
+                        res.value = isLeapYear(yearNum) ? "29" : "28";
+                        break;
+                }
+            }
+        }
+    </script>
+</head>
+<body onload="update()">
+    <form name="f">
+        <table border="1" align="center" style="border-collapse: collapse; padding: 10px;">
+            <tr><th colspan="2">DATES IN MONTH</th></tr>
+            <tr>
+                <td>Year:</td>
+                <td><input type="text" name="year" value="2024" onblur="update()"></td>
+            </tr>
+            <tr>
+                <td>Month:</td>
+                <td>
+                    <select name="month" onchange="update()">
+                        <option value="1">Tháng 01</option>
+                        <option value="2">Tháng 02</option>
+                        <option value="3">Tháng 03</option>
+                        <option value="4">Tháng 04</option>
+                        <option value="5">Tháng 05</option>
+                        <option value="6">Tháng 06</option>
+                        <option value="7">Tháng 07</option>
+                        <option value="8">Tháng 08</option>
+                        <option value="9">Tháng 09</option>
+                        <option value="10">Tháng 10</option>
+                        <option value="11">Tháng 11</option>
+                        <option value="12">Tháng 12</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Days in month:</td>
+                <td><input type="text" name="date" readonly style="background: #eee;"></td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>

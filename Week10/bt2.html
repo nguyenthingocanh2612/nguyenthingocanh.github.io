@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Tính Hình Tròn</title>
+    <style>
+        body { font-family: Arial; padding: 20px; }
+        .container { border: 1px solid #ccc; width: 300px; padding: 15px; border-radius: 8px; background: #f9f9f9; }
+    </style>
+    <script>
+        function tinhTron() {
+            let r = parseFloat(document.getElementById('bankinh').value);
+            if (!isNaN(r)) {
+                document.getElementById('cv').value = (2 * 3.14 * r).toFixed(2);
+                document.getElementById('dt').value = (3.14 * r * r).toFixed(2);
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h3>Hình Tròn (π = 3.14)</h3>
+        Nhập bán kính: <input type="number" id="bankinh" onblur="tinhTron()">
+        <p><i>(Nhấn ra ngoài để xem kết quả)</i></p>
+        Chu vi: <input type="text" id="cv" readonly>
+        Diện tích: <input type="text" id="dt" readonly>
+    </div>
+</body>
+</html>

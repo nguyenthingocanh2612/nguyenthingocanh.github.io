@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Tính Hình Chữ Nhật</title>
+    <style>
+        body { font-family: Arial; padding: 20px; }
+        .container { border: 1px solid #ccc; width: 300px; padding: 15px; border-radius: 8px; }
+        input { margin-bottom: 10px; width: 100%; }
+    </style>
+    <script>
+        function tinhToan() {
+            let dai = parseFloat(document.getElementById('dai').value);
+            let rong = parseFloat(document.getElementById('rong').value);
+            if (!isNaN(dai) && !isNaN(rong)) {
+                document.getElementById('chuvi').value = (dai + rong) * 2;
+                document.getElementById('dientich').value = dai * rong;
+            } else {
+                alert("Vui lòng nhập số hợp lệ!");
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h3>Hình Chữ Nhật</h3>
+        Chiều dài: <input type="number" id="dai">
+        Chiều rộng: <input type="number" id="rong">
+        <button onclick="tinhToan()">Tính toán</button>
+        <hr>
+        Chu vi: <input type="text" id="chuvi" readonly>
+        Diện tích: <input type="text" id="dientich" readonly>
+    </div>
+</body>
+</html>
