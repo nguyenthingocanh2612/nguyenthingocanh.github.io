@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đặt Vé MANGO CINEMA - Quy trình nhanh chóng</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <nav class="navbar container">
+            <div class="logo">
+                <a href="index.html">
+                    <i class="fas fa-video mango-icon"></i>
+                    MANGO<span>CINEMA</span>
+                </div>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Trang chủ</a></li>
+                <li><a href="index.html#movies">Lịch chiếu</a></li>
+                <li><a href="index.html#promotions">Ưu đãi</a></li>
+                <li><a href="booking.html" class="active btn-booking">Đặt vé <i class="fas fa-ticket-alt"></i></a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="booking-page container">
+        <h2 class="page-title text-center">ĐẶT VÉ TRỰC TUYẾN</h2>
+        
+        <div class="booking-steps">
+            <div class="step active" id="step-1-indicator">1. Chọn Phim & Lịch</div>
+            <div class="step" id="step-2-indicator">2. Chọn Ghế</div>
+            <div class="step" id="step-3-indicator">3. Bắp Nước & Thanh Toán</div>
+            <div class="step" id="step-4-indicator">4. Nhận Vé QR</div>
+        </div>
+
+        <section id="booking-step-1" class="booking-section">
+            <h3>Bước 1: Chọn Tỉnh/Thành & Suất chiếu</h3>
+            <div class="selection-grid">
+                <div class="selection-item">
+                    <label><i class="fas fa-map-marker-alt"></i> Tỉnh/Thành phố</label>
+                    <select id="city-select" onchange="updateCinemaList()">
+                        <option value="" disabled selected>Chọn Tỉnh/Thành phố</option>
+                        <option value="hanoi">Hà Nội</option>
+                        <option value="danang">Đà Nẵng</option>
+                        <option value="hcm">TP.HCM</option>
+                    </select>
+                </div>
+
+                <div class="selection-item">
+                    <label><i class="fas fa-building"></i> Rạp Cinema</label>
+                    <select id="cinema-select">
+                        <option value="" disabled selected>Chọn Tỉnh/Thành phố trước</option>
+                    </select>
+                </div>
+
+                <div class="selection-item">
+                    <label><i class="fas fa-calendar-alt"></i> Ngày chiếu</label>
+                    <input type="date" id="date-select" class="custom-input">
+                </div>
+                
+                 <div class="selection-item full-width">
+                    <label><i class="fas fa-film"></i> Chọn phim</label>
+                    <select id="movie-select" class="custom-input">
+                        <option value="" disabled selected>Chọn phim bạn muốn xem</option>
+                        <option value="muado">Mưa Đỏ</option>
+                        <option value="dao">Đào, Phở và Piano</option>
+                        <option value="quy">Quỷ Nhập Tràng 2</option>
+                        <option value="shin">Shin: Ẩm Thực Đường Phố</option>
+                        <option value="bogia">Bố Già</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <div class="times-section">
+                <h4><i class="far fa-clock"></i> Giờ chiếu:</h4>
+                <div class="time-slots">
+                    <button class="time-slot active">09:30</button>
+                    <button class="time-slot">12:15</button>
+                    <button class="time-slot">15:00</button>
+                    <button class="time-slot">18:30</button>
+                    <button class="time-slot">21:00</button>
+                </div>
+            </div>
+
+            <button class="btn-primary next-step" onclick="goToStep(2)">Tiếp theo (Chọn Ghế) <i class="fas fa-arrow-right"></i></button>
+        </section>
+
+        <section id="booking-step-2" class="booking-section d-none">
+            <h3>Bước 2: Sơ đồ ghế MANGO CINEMA (Phòng 5)</h3>
+            <div class="screen-indicator">MÀN HÌNH</div>
+            
+            <div class="seat-map-container">
+                <div class="seat-map" id="seat-map">
+                    <div class="seat-row-label">A</div>
+                    <div class="seat-row" data-row="A">
+                        <div class="seat">1</div><div class="seat">2</div><div class="seat">3</div><div class="seat booked">4</div><div class="seat booked">5</div><div class="seat">6</div><div class="seat">7</div><div class="seat">8</div><div class="seat">9</div><div class="seat">10</div><div class="seat">11</div><div class="seat">12</div>
+                    </div>
+                    <div class="seat-row-label">B</div>
+                    <div class="seat-row" data-row="B">
+                        <div class="seat">1</div><div class="seat">2</div><div class="seat">3</div><div class="seat">4</div><div class="seat">5</div><div class="seat">6</div><div class="seat VIP">7</div><div class="seat VIP">8</div><div class="seat">9</div><div class="seat">10</div><div class="seat">11</div><div class="seat">12</div>
+                    </div>
+                    <div class="seat-row-label">C</div>
+                    <div class="seat-row" data-row="C">
+                        <div class="seat">1</div><div class="seat">2</div><div class="seat VIP">3</div><div class="seat VIP selected">4</div><div class="seat VIP selected">5</div><div class="seat VIP">6</div><div class="seat VIP">7</div><div class="seat VIP">8</div><div class="seat VIP">9</div><div class="seat VIP">10</div><div class="seat">11</div><div class="seat">12</div>
+                    </div>
+                    <div class="seat-row-label">D</div>
+                    <div class="seat-row" data-row="D">
+                        <div class="seat">1</div><div class="seat">2</div><div class="seat VIP">3</div><div class="seat VIP">4</div><div class="seat VIP">5</div><div class="seat VIP">6</div><div class="seat VIP">7</div><div class="seat VIP">8</div><div class="seat VIP">9</div><div class="seat VIP">10</div><div class="seat">11</div><div class="seat">12</div>
+                    </div>
+                    <div class="seat-row-label">E</div>
+                    <div class="seat-row" data-row="E">
+                        <div class="seat">1</div><div class="seat">2</div><div class="seat">3</div><div class="seat">4</div><div class="seat">5</div><div class="seat">6</div><div class="seat">7</div><div class="seat">8</div><div class="seat">9</div><div class="seat">10</div><div class="seat">11</div><div class="seat">12</div>
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="seat-legend">
+                <div class="legend-item"><div class="seat"></div> Thường</div>
+                <div class="legend-item"><div class="seat VIP"></div> VIP (+15k)</div>
+                <div class="legend-item"><div class="seat selected"></div> Đang chọn</div>
+                <div class="legend-item"><div class="seat booked"></div> Đã đặt</div>
+            </div>
+
+            <button class="btn-secondary prev-step" onclick="goToStep(1)"><i class="fas fa-arrow-left"></i> Quay lại</button>
+            <button class="btn-primary next-step" onclick="goToStep(3)">Tiếp theo (Bắp Nước) <i class="fas fa-arrow-right"></i></button>
+        </section>
+
+        <section id="booking-step-3" class="booking-section d-none">
+            <div class="booking-step-3-flex">
+                
+                <div class="left-pannel">
+                    <div class="concessions-section">
+                        <h3>Bước 3a: Mua Bỏng nước & Đồ uống</h3>
+                        <div class="concession-list">
+                            <div class="concession-item">
+                                <i class="fas fa-popcorn text-mango concession-icon"></i>
+                                <div class="concession-info">
+                                    <h4>Combo Bắp Lớn</h4>
+                                    <p>1 Bắp vị ngọt + 2 Coca (M)</p>
+                                </div>
+                                <div class="price">89,000đ</div>
+                                <div class="quantity-controls">
+                                    <button class="qty-btn" onclick="updateQty('combo1', -1)">-</button>
+                                    <span class="qty" id="combo1-qty">0</span>
+                                    <button class="qty-btn" onclick="updateQty('combo1', 1)">+</button>
+                                </div>
+                            </div>
+                            <div class="concession-item">
+                                <i class="fas fa-wine-glass-alt text-mango concession-icon"></i>
+                                <div class="concession-info">
+                                    <h4>Combo Pepsi-Cola</h4>
+                                    <p>2 Pepsi (L) + 1 Bắp Lớn</p>
+                                </div>
+                                <div class="price">75,000đ</div>
+                                <div class="quantity-controls">
+                                    <button class="qty-btn" onclick="updateQty('combo2', -1)">-</button>
+                                    <span class="qty" id="combo2-qty">1</span>
+                                    <button class="qty-btn" onclick="updateQty('combo2', 1)">+</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="payment-section">
+                        <h3>Bước 3b: Thanh toán & Ưu đãi</h3>
+                        <div class="promo-code selection-item full-width">
+                            <label><i class="fas fa-percentage"></i> Áp dụng Ưu đãi/Mã giảm giá</label>
+                            <input type="text" placeholder="Nhập mã 'MANGONEW' - Giảm 10k" id="promo-input">
+                        </div>
+                        
+                        <div class="payment-methods selection-item full-width">
+                            <label><i class="fas fa-credit-card"></i> Phương thức thanh toán</label>
+                            <div class="method-options">
+                                <div class="method active">ATM/Visa</div>
+                                <div class="method">MoMo</div>
+                                <div class="method">ZaloPay</div>
+                                <div class="method">Thẻ Thành viên</div>
+                            </div>
+                        </div>
+
+                        <div class="validation-form selection-item full-width">
+                            <label><i class="fas fa-user"></i> Thông tin cá nhân nhận vé</label>
+                            <form id="booking-info-form">
+                                <input type="text" id="user-name" placeholder="Họ và Tên" required minlength="2">
+                                <input type="tel" id="user-phone" placeholder="Số điện thoại" required pattern="[0-9]{10}">
+                                <input type="email" id="user-email" placeholder="Email (nhận vé)" required>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="right-pannel sticky-summary">
+                    <div class="ticket-summary">
+                        <h3><i class="fas fa-ticket-alt"></i> Tóm tắt Vé của bạn</h3>
+                        <div class="summary-details">
+                            <p><strong>Phim:</strong> Mưa Đỏ</p>
+                            <p><strong>Rạp:</strong> Mango Bà Triệu (Phòng 5)</p>
+                            <p><strong>Ngày & Giờ:</strong> 15/10/2026, 18:30</p>
+                            <p><strong>Ghế:</strong> <span class="selected-seats-display">C4, C5</span> (Thường)</p>
+                            <p><strong>Dịch vụ thêm:</strong> <span class="concessions-summary">Combo Pepsi-Cola (x1)</span></p>
+                        </div>
+                        <div class="total-price-summary">
+                            <span>Tạm tính:</span>
+                            <span id="sub-total">345,000 VNĐ</span>
+                        </div>
+                        <div class="total-price-summary">
+                            <span>Mã giảm giá 'MANGONEW':</span>
+                            <span id="discount-amount">-10,000 VNĐ</span>
+                        </div>
+                        <div class="grand-total-summary">
+                            <span>Tổng thanh toán:</span>
+                            <span id="grand-total">335,000 VNĐ</span>
+                        </div>
+                        <button class="btn-primary full-width" id="confirm-payment-btn" type="submit" form="booking-info-form">Xác nhận và Thanh toán</button>
+                        <button class="btn-secondary full-width prev-step" onclick="goToStep(2)"><i class="fas fa-arrow-left"></i> Quay lại</button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="booking-step-4" class="booking-section d-none">
+            <h3>Bước 4: Nhận vé QR Code</h3>
+            <div id="qr-result" class="qr-result-pannel text-center">
+                </div>
+            <a href="index.html" class="btn-primary">Quay về Trang chủ</a>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container copyright text-center">&copy; 2026 MANGO CINEMA.</div>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+</html>
