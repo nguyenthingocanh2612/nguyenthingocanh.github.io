@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Mini calculator</title>
+    <script language="javascript">
+        function calculate() {
+            // Lấy các phần tử từ form
+            var a = document.frmCal.txta;
+            var b = document.frmCal.txtb;
+            var o = document.frmCal.slto;
+            var r = document.frmCal.txtr;
+
+            // Định dạng kiểm tra số (Regex)
+            var numberFormat = /^[+-]?\d+(\.\d+)?$/;
+
+            // Kiểm tra tính hợp lệ của số a
+            if (numberFormat.test(a.value) == false) {
+                alert("a must be a number!");
+                a.focus();
+            } 
+            // Kiểm tra tính hợp lệ của số b
+            else if (numberFormat.test(b.value) == false) {
+                alert("b must be a number!");
+                b.focus();
+            }
+            // Kiểm tra lỗi chia cho 0 (khi chọn phép chia / hoặc chia lấy dư %)
+            else if ((o.value == "/" || o.value == "%") && parseInt(b.value) == 0) {
+                alert("b can't be 0!");
+                r.value = "";
+                b.focus();
+            }
+            // Nếu mọi thứ hợp lệ, thực hiện tính toán
+            else {
+                r.value = eval(a.value + o.value + b.value);
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <form name="frmCal">
+        <table border="0" align="center">
+            <tr>
+                <td colspan="2" align="center">
+                    <h2>MINI CALCULATOR</h2>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">a = </td>
+                <td><input name="txta" type="text" /></td>
+            </tr>
+            <tr>
+                <td align="right">b = </td>
+                <td><input name="txtb" type="text" /></td>
+            </tr>
+            <tr>
+                <td align="right">Operator: </td>
+                <td>
+                    <select name="slto">
+                        <option value="+">+</option>
+                        <option value="-">-</option>
+                        <option value="*">*</option>
+                        <option value="/">/</option>
+                        <option value="%">%</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">Result: </td>
+                <td><input name="txtr" readonly /></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <input type="button" value="Calculate" onClick="calculate()" />
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
