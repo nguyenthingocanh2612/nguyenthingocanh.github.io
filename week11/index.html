@@ -1,75 +1,81 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <title>Simple Calculator</title>
-    <script language="javascript">
-        function calculate() {
-            var num1 = document.calcForm.n1.value;
-            var num2 = document.calcForm.n2.value;
-            var op = document.calcForm.operator.value;
-            var resultField = document.calcForm.result;
-
-            // Regular expression to check if input is a valid number
-            var numRegEx = /^-?\d*\.?\d+$/;
-
-            if (!numRegEx.test(num1) || !numRegEx.test(num2)) {
-                alert("Please enter valid numbers in both fields.");
-                return;
-            }
-
-            // Creating the expression string to be evaluated
-            var expression = num1 + op + num2;
-
-            try {
-                // Using eval() to process the math expression
-                var total = eval(expression);
-                resultField.value = total;
-            } catch (e) {
-                alert("Invalid calculation");
-            }
+    <title>Multiplication Table</title>
+    <style>
+        body {
+            font-family: "Times New Roman", serif;
+            text-align: center;
         }
-    </script>
+
+        h1 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 60px;
+            height: 22px;
+            font-size: 16px;
+        }
+
+        .box {
+            width: 260px;
+            min-height: 230px;
+            border: 2px solid #ddd;
+            margin: 10px auto;
+            text-align: left;
+            padding: 10px;
+            font-size: 18px;
+        }
+
+        .error {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
 
-<form name="calcForm">
-    <table border="0" align="center" style="margin-top: 50px; background-color: #f4f4f4; padding: 20px; border-radius: 8px;">
-        <tr>
-            <td colspan="2" align="center"><h2>SIMPLE CALCULATOR</h2></td>
-        </tr>
-        <tr>
-            <td>Number 1:</td>
-            <td><input type="text" name="n1" size="10"></td>
-        </tr>
-        <tr>
-            <td>Operator:</td>
-            <td>
-                <select name="operator">
-                    <option value="+">+</option>
-                    <option value="-">-</option>
-                    <option value="*">*</option>
-                    <option value="/">/</option>
-                    <option value="%">%</option>
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <td>Number 2:</td>
-            <td><input type="text" name="n2" size="10"></td>
-        </tr>
-        <tr>
-            <td colspan="2" align="center">
-                <input type="button" value="Calculate" onclick="calculate()">
-            </td>
-        </tr>
-        <tr>
-            <td>Result:</td>
-            <td><input type="text" name="result" size="10" readonly style="background-color: #e0e0e0;"></td>
-        </tr>
-    </table>
-</form>
+    <p style="text-align:right; margin-right: 330px;">Web Design and Development</p>
+
+    <h1>MULTIPLICATION TABLE</h1>
+
+    <label>Which multiplication table that you want to display?</label>
+    <input type="text" id="number" onkeyup="showTable()">
+
+    <div class="box" id="result"></div>
+
+    <script>
+        function showTable() {
+            let value = document.getElementById("number").value;
+            let result = document.getElementById("result");
+
+            if (value === "") {
+                result.innerHTML = "";
+                return;
+            }
+
+            if (isNaN(value)) {
+                result.innerHTML = "<p class='error'>You must enter a number</p>";
+                return;
+            }
+
+            let number = Number(value);
+            let output = "<b>Multiplication table " + number + ":</b><br>";
+
+            for (let i = 1; i <= 10; i++) {
+                output += number + " x " + i + " = " + (number * i) + "<br>";
+            }
+
+            result.innerHTML = output;
+        }
+    </script>
 
 </body>
 </html>
- 
